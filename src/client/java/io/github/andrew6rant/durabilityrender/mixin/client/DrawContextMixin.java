@@ -25,10 +25,6 @@ import java.util.List;
 public abstract class DrawContextMixin {
     @Shadow @Final private MinecraftClient client;
 
-    @Shadow public abstract int getScaledWindowWidth();
-
-    @Shadow public abstract int getScaledWindowHeight();
-
     @Unique private static ItemStack savedStack;
 
     @Inject(method = "drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;IILnet/minecraft/client/gui/tooltip/TooltipPositioner;)V",
@@ -44,42 +40,6 @@ public abstract class DrawContextMixin {
 
     }
 
-    /*@Inject(method = "drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;IILnet/minecraft/client/gui/tooltip/TooltipPositioner;)V",
-            at = @At(value = "HEAD"))
-    private void drawTooltip(TextRenderer textRenderer, List<TooltipComponent> components, int x, int y, TooltipPositioner positioner, CallbackInfo ci) {
-        if (!components.isEmpty()) {
-            int i = 0;
-            int j = components.size() == 1 ? -2 : 0;
-
-            for (TooltipComponent tooltipComponent : components) {
-                int k = tooltipComponent.getWidth(textRenderer);
-                if (k > i) {
-                    i = k;
-                }
-                j += tooltipComponent.getHeight();
-            }
-
-            Vector2ic vector2ic = positioner.getPosition(this.getScaledWindowWidth(), this.getScaledWindowHeight(), x, y, i, j);
-
-            Screen currentScreen = client.currentScreen;
-            if (currentScreen != null) {
-                System.out.println(currentScreen.getTitle());
-            } else {
-                System.out.println("INVALID SCREEN!");
-            }
-
-            if (currentScreen != null && currentScreen instanceof HandledScreen<?> handledScreen) {
-                Slot focusedSlot = ((HandledScreenAccessor)handledScreen).getFocusedSlot();
-                System.out.println("focusedSlot "+focusedSlot);
-                if (focusedSlot != null) {
-                    DrawUtil.drawTooltipDurability(focusedSlot.getStack(), this, vector2ic.x(), vector2ic.y(), i, j);
-                }
-            }
-
-        }
-
-    }*/
-
     @ModifyVariable(method = "drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;IILnet/minecraft/client/gui/tooltip/TooltipPositioner;)V",
             at = @At(value = "STORE"), ordinal = 5)
     private int drawTooltip(int m) {
@@ -89,22 +49,9 @@ public abstract class DrawContextMixin {
         return m;
     }
 
-    /*@ModifyVariable(method = "drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;IILnet/minecraft/client/gui/tooltip/TooltipPositioner;)V",
-    at = @At(value = "STORE"))
-    private Vector2ic drawTooltip(Vector2ic vector2ic) {
-        return vector2ic;
-    }*/
-
     @Inject(method = "drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;IILnet/minecraft/client/gui/tooltip/TooltipPositioner;)V",
         at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;draw(Ljava/lang/Runnable;)V"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void drawTooltip(TextRenderer textRenderer, List<TooltipComponent> components, int x, int y, TooltipPositioner positioner, CallbackInfo ci, int i, int j, int l, int m, Vector2ic vector2ic, int n, int o, int p) {
-        /*Screen currentScreen = client.currentScreen;
-        if (currentScreen != null && currentScreen instanceof HandledScreen<?> handledScreen) {
-            Slot focusedSlot = ((HandledScreenAccessor)handledScreen).getFocusedSlot();
-            if (focusedSlot != null) {
-                DrawUtil.drawTooltipDurability(focusedSlot.getStack(), this, n, o, l, m);
-            }
-        }*/
         if (savedStack != null) {
             DrawUtil.drawTooltipDurability(savedStack, ((DrawContext)(Object)this), n, o, l, m);
         }
