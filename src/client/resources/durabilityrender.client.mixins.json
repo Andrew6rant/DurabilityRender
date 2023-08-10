@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"package": "io.github.andrew6rant.durabilityrender.mixin.client",
+	"compatibilityLevel": "JAVA_17",
+	"client": [
+		"DrawContextMixin",
+		"HandledScreenAccessor",
+		"ItemStackMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
