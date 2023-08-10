@@ -1,6 +1,7 @@
 package io.github.andrew6rant.durabilityrender.mixin.client;
 
 import io.github.andrew6rant.durabilityrender.DrawUtil;
+import io.github.andrew6rant.durabilityrender.Util;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -8,6 +9,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.tooltip.TooltipComponent;
 import net.minecraft.client.gui.tooltip.TooltipPositioner;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
 import org.joml.Vector2ic;
@@ -25,25 +27,29 @@ import java.util.List;
 public abstract class DrawContextMixin {
     @Shadow @Final private MinecraftClient client;
 
-    @Unique private static ItemStack savedStack;
+    @Unique private static ItemStack savedFocusedStack;
+    @Unique private static ItemStack savedSlotStack;
 
-    @Inject(method = "drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;IILnet/minecraft/client/gui/tooltip/TooltipPositioner;)V",
-            at = @At(value = "HEAD"))
-    private void drawTooltip(TextRenderer textRenderer, List<TooltipComponent> components, int x, int y, TooltipPositioner positioner, CallbackInfo ci) {
+    @Inject(method = "drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;IILnet/minecraft/client/gui/tooltip/TooltipPositioner;)V", at = @At(value = "HEAD"))
+    private void durabilityrender$saveFocusedStack(TextRenderer textRenderer, List<TooltipComponent> components, int x, int y, TooltipPositioner positioner, CallbackInfo ci) {
         Screen currentScreen = client.currentScreen;
         if (currentScreen != null && currentScreen instanceof HandledScreen<?> handledScreen) {
             Slot focusedSlot = ((HandledScreenAccessor)handledScreen).getFocusedSlot();
             if (focusedSlot != null) {
-                savedStack = focusedSlot.getStack();
+                savedFocusedStack = focusedSlot.getStack();
             }
         }
+    }
 
+    @Inject(method = "drawItemInSlot(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V", at = @At(value = "HEAD"))
+    private void durabilityrender$saveSlotStatck(TextRenderer textRenderer, ItemStack stack, int x, int y, String countOverride, CallbackInfo ci) {
+        savedSlotStack = stack;
     }
 
     @ModifyVariable(method = "drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;IILnet/minecraft/client/gui/tooltip/TooltipPositioner;)V",
             at = @At(value = "STORE"), ordinal = 5)
-    private int drawTooltip(int m) {
-        if (savedStack != null && savedStack.isDamageable() && savedStack.getDamage() != 0) {
+    private int durabilityrender$modifyTooltipLength(int m) {
+        if (savedFocusedStack != null && savedFocusedStack.isDamageable() && savedFocusedStack.getDamage() != 0) {
             return m + DrawUtil.changeVerticalLength(); // change the length of the tooltip if stack will have durability bar drawn
         }
         return m;
@@ -51,21 +57,34 @@ public abstract class DrawContextMixin {
 
     @Inject(method = "drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;IILnet/minecraft/client/gui/tooltip/TooltipPositioner;)V",
         at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;draw(Ljava/lang/Runnable;)V"), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void drawTooltip(TextRenderer textRenderer, List<TooltipComponent> components, int x, int y, TooltipPositioner positioner, CallbackInfo ci, int i, int j, int l, int m, Vector2ic vector2ic, int n, int o, int p) {
-        if (savedStack != null) {
-            DrawUtil.drawTooltipDurability(savedStack, ((DrawContext)(Object)this), n, o, l, m);
+    private void durabilityrender$drawTooltipDurability(TextRenderer textRenderer, List<TooltipComponent> components, int x, int y, TooltipPositioner positioner, CallbackInfo ci, int i, int j, int l, int m, Vector2ic vector2ic, int n, int o, int p) {
+        if (savedFocusedStack != null) {
+            DrawUtil.drawTooltipDurability(savedFocusedStack, ((DrawContext)(Object)this), n, o, l, m);
         }
+    }
+
+    @Redirect(method = "drawItemInSlot(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
+    at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;fill(Lnet/minecraft/client/render/RenderLayer;IIIII)V", ordinal = 0))
+    public void durabilityrender$redirectDurabilityBackground(DrawContext instance, RenderLayer layer, int x1, int y1, int x2, int y2, int color) {
+        ((DrawContext)(Object)this).fill(RenderLayer.getGuiOverlay(), x1+5, y1, x2, y2, color);
+    }
+
+    @Redirect(method = "drawItemInSlot(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;fill(Lnet/minecraft/client/render/RenderLayer;IIIII)V", ordinal = 1))
+    public void durabilityrender$redirectDurabilityForeground(DrawContext instance, RenderLayer layer, int x1, int y1, int x2, int y2, int color) {
+        int i = Util.getItemBarStep(savedSlotStack);
+        ((DrawContext)(Object)this).fill(RenderLayer.getGuiOverlay(), x1+5, y1, x1+i+5, y2, color);
     }
 
     @ModifyConstant(method = "drawItemInSlot(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
             constant = @Constant(intValue = -16777216, ordinal = 0))
-    public int drawItemInSlot(int constant) {
-        return DrawUtil.getDurabilityBackgroundOpacity();
+    public int durabilityrender$modifyBackgroundOpacity(int constant) {
+        return Util.getDurabilityBackgroundOpacity();
     }
 
     @ModifyConstant(method = "drawItemInSlot(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
             constant = @Constant(intValue = -16777216, ordinal = 1))
-    public int drawItemInSlot2(int constant) {
-        return DrawUtil.getDurabilityOpacity();
+    public int durabilityrender$modifyForegroundOpacity(int constant) {
+        return Util.getDurabilityOpacity();
     }
 }

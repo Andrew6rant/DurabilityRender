@@ -34,17 +34,7 @@ public class DrawUtil {
         }
     }
 
-    public static int getShownDurabilityPercent() {
-        return 100;
-    }
 
-    public static int getDurabilityOpacity() {
-        return -16777216;
-    }
-
-    public static int getDurabilityBackgroundOpacity() {
-        return 0x77000000;
-    }
 
     private static void renderHorizontalLine(DrawContext context, int x, int y, int width, int z, int color) {
         context.fill(x+1, y-1, x + width-1, y-2, z, color);
