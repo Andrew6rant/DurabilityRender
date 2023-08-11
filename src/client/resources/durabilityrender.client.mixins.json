@@ -5,7 +5,8 @@
 	"client": [
 		"DrawContextMixin",
 		"HandledScreenAccessor",
-		"ItemStackMixin"
+		"ItemStackMixin",
+		"OrderedTextTooltipComponentMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

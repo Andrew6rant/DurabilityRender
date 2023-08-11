@@ -10,6 +10,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import static io.github.andrew6rant.durabilityrender.config.ClientConfig.hideSlotDurabilityAbovePercent;
+
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
 
@@ -20,7 +22,7 @@ public abstract class ItemStackMixin {
             int maxDamage = itemStack.getMaxDamage();
             int durability = maxDamage - itemStack.getDamage();
 
-            if (((int)Math.floor(((float)durability / (float)maxDamage) * 100)) >= Util.getShownDurabilityPercent()) {
+            if (((int)Math.floor(((float)durability / (float)maxDamage) * 100)) >= hideSlotDurabilityAbovePercent) {
                 cir.setReturnValue(false);
             }
         }

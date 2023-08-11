@@ -1,20 +1,16 @@
 package io.github.andrew6rant.durabilityrender;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
+
+import static io.github.andrew6rant.durabilityrender.config.ClientConfig.slotDurabilityBarWidth;
 
 public class Util {
     public static int getItemBarStep(ItemStack stack) {
-        int barLength = 8; // this will be a config option
-        return Math.round((float)barLength - (float)stack.getDamage() * (float)barLength / (float)stack.getMaxDamage());
-    }
-
-    public static int getShownDurabilityPercent() {
-        return 100;
+        return Math.round((float)slotDurabilityBarWidth - (float)stack.getDamage() * (float)slotDurabilityBarWidth / (float)stack.getMaxDamage());
     }
 
     public static int getDurabilityOpacity() {
-        return -16777216;
+        return -16777216; //-16777216 // 1157627904
     }
 
     public static int getDurabilityBackgroundOpacity() {

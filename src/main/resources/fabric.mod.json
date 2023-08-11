@@ -20,6 +20,9 @@
 		],
 		"client": [
           "io.github.andrew6rant.durabilityrender.DurabilityRenderClient"
+		],
+		"modmenu": [
+			"io.github.andrew6rant.durabilityrender.config.ConfigEntrypoint"
 		]
 	},
 	"mixins": [

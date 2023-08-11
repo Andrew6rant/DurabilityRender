@@ -28,7 +28,7 @@ public class OrderedTextTooltipComponentMixin {
     @Overwrite
     public int getHeight() {
         if(this.text.equals(OrderedText.EMPTY)) {
-            return 5;
+            return 1;
         } else {
             return 10;
         }
