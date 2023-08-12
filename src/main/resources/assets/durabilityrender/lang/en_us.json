@@ -1,3 +1,33 @@
 {
-  "tooltip.durability": "%s / %s (%s%%)"
+  "durabilityrender.tooltip.percent_only": "Remaining Durability: %s%%",
+  "durabilityrender.tooltip.durability_only": "%s / %s",
+  "durabilityrender.tooltip.remaining_only": "Remaining Uses: %s",
+  "durabilityrender.tooltip.durability_and_percent": "%s / %s (%s%%)",
+  "durabilityrender.tooltip.percent_and_durability": "%s%% (%s / %s)",
+  "durabilityrender.tooltip.percent_and_remaining": "%s%% (%s Uses Remain)",
+  "durabilityrender.tooltip.remaining_and_percent": "Remaining uses: %s (%s%%)",
+
+  "durabilityrender.midnightconfig.showDurabilityTooltip": "Show durability tooltip text",
+  "durabilityrender.midnightconfig.tooltipFormat": "Format of the durability tooltip",
+  "durabilityrender.midnightconfig.percentPrecision": "How many digits should be shown in percent tooltips?",
+
+  "durabilityrender.midnightconfig.enum.TooltipFormatEnum.DURABILITY_AND_PERCENT": "Durability and Percent",
+  "durabilityrender.midnightconfig.enum.TooltipFormatEnum.PERCENT_AND_DURABILITY": "Percent and Durability",
+  "durabilityrender.midnightconfig.enum.TooltipFormatEnum.REMAINING_AND_PERCENT": "Remaining Uses and Percent",
+  "durabilityrender.midnightconfig.enum.TooltipFormatEnum.PERCENT_AND_REMAINING": "Percent and Remaining Uses",
+  "durabilityrender.midnightconfig.enum.TooltipFormatEnum.PERCENT_ONLY": "Percent Only",
+  "durabilityrender.midnightconfig.enum.TooltipFormatEnum.DURABILITY_ONLY": "Durability Only",
+  "durabilityrender.midnightconfig.enum.TooltipFormatEnum.REMAINING_ONLY": "Remaining Uses Only",
+
+  "durabilityrender.midnightconfig.slotDurabilityBarWidth": "Slot durability bar width",
+  "durabilityrender.midnightconfig.slotDurabilityBarHeight": "Slot durability bar height",
+  "durabilityrender.midnightconfig.slotDurabilityBarBackgroundHeight": "Slot durability bar background height",
+  "durabilityrender.midnightconfig.slotDurabilityBarXOffset": "Slot durability bar X offset",
+  "durabilityrender.midnightconfig.slotDurabilityBarYOffset": "Slot durability bar Y offset",
+  "durabilityrender.midnightconfig.modifyTooltipLength": "Append pixel length to tooltips",
+  "durabilityrender.midnightconfig.hideSlotDurabilityAbovePercent": "Hide slot durability display above _ percent",
+  "durabilityrender.midnightconfig.tooltipLeftOffset": "Tooltip durability bar left offset",
+  "durabilityrender.midnightconfig.tooltipRightOffset": "Tooltip durability bar right offset",
+  "durabilityrender.midnightconfig.tooltipBottomOffset": "Tooltip durability bar bottom offset",
+  "durabilityrender.midnightconfig.tooltipBarThickness": "Tooltip durability bar thickness"
 }

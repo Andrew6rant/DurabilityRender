@@ -2,6 +2,9 @@ package io.github.andrew6rant.durabilityrender;
 
 import net.minecraft.item.ItemStack;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import static io.github.andrew6rant.durabilityrender.config.ClientConfig.slotDurabilityBarWidth;
 
 public class Util {
@@ -15,5 +18,11 @@ public class Util {
 
     public static int getDurabilityBackgroundOpacity() {
         return 0x77000000;
+    }
+
+    public static double round(double value, int places) {
+        BigDecimal bd = new BigDecimal(Double.toString(value));
+        bd = bd.setScale(places, RoundingMode.HALF_DOWN);
+        return bd.doubleValue();
     }
 }
