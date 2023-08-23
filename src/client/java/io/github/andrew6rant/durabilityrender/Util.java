@@ -1,13 +1,45 @@
 package io.github.andrew6rant.durabilityrender;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import static io.github.andrew6rant.durabilityrender.config.ClientConfig.slotDurabilityBarWidth;
+import static io.github.andrew6rant.durabilityrender.config.ClientConfig.*;
+import static io.github.andrew6rant.durabilityrender.config.ClientConfig.durabilityColor;
+import static io.github.andrew6rant.durabilityrender.config.ConfigEnums.DurabilityColorEnum.HSL_CLOCKWISE;
+import static net.minecraft.util.math.ColorHelper.Abgr.*;
+import static net.minecraft.util.math.ColorHelper.Abgr.getBlue;
 
 public class Util {
+
+    public static int getDurabilityColor(ItemStack itemStack) {
+        float percentDamaged = Math.max(0.0F, (((float)itemStack.getMaxDamage() - (float)itemStack.getDamage()) / (float)itemStack.getMaxDamage()));
+        int startColor = parseConfigHex(slotDurabilityColorStartRRGGBB);
+        int endColor = parseConfigHex(slotDurabilityColorEndRRGGBB);
+
+        int startHue = 0, endHue = 0;
+        float hueValue;
+
+        return switch (durabilityColor) {
+            case RGB -> mixHexColors(endColor, startColor, percentDamaged);
+            case RGB_INVERTED -> mixHexColors(startColor, endColor, percentDamaged);
+            case HSL_CLOCKWISE, HSL_COUNTERCLOCKWISE -> {
+                startHue = Util.getHue(getRed(startColor), getGreen(startColor), getBlue(startColor));
+                endHue = Util.getHue(getRed(endColor), getGreen(endColor), getBlue(endColor));
+                if (durabilityColor == HSL_CLOCKWISE) {
+                    hueValue = ((endHue/360f)*percentDamaged)-((startHue/360f)*percentDamaged);
+                } else {
+                    hueValue = ((startHue/360f)*percentDamaged)+((endHue/360f)*percentDamaged);
+                }
+                if (hueValue < 0) {
+                    hueValue = 1f - hueValue;
+                }
+                yield MathHelper.hsvToRgb(hueValue, 1.0F, 1.0F);
+            }
+        };
+    }
     public static int getItemBarStep(ItemStack stack) {
         return Math.round((float)slotDurabilityBarWidth - (float)stack.getDamage() * (float)slotDurabilityBarWidth / (float)stack.getMaxDamage());
     }

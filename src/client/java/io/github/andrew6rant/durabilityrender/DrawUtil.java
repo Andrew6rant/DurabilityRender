@@ -20,7 +20,7 @@ public class DrawUtil {
                 int step = Math.round((float)(k- tooltipLeftOffset - tooltipRightOffset) - (float)stackDamage * (float)(k- tooltipLeftOffset - tooltipRightOffset) / (float)maxDamage);
 
                 drawContext.fill(i+ tooltipLeftOffset, j+l- tooltipBottomOffset, i+k- tooltipRightOffset, j+l-(tooltipBottomOffset + tooltipBarThickness), 401, -11184811);
-                drawContext.fill(i+ tooltipLeftOffset, j+l- tooltipBottomOffset, i+step, j+l-(tooltipBottomOffset + tooltipBarThickness), 401, savedStack.getItemBarColor() | 0xFF000000);
+                drawContext.fill(i+ tooltipLeftOffset, j+l- tooltipBottomOffset, i+step, j+l-(tooltipBottomOffset + tooltipBarThickness), 401, Util.getDurabilityColor(savedStack) | 0xFF000000);
             }
         }
     }
