@@ -8,13 +8,8 @@
   "durabilityrender.tooltip.remaining_and_percent": "Remaining uses: %s (%s%%)",
 
   "durabilityrender.midnightconfig.title": "Durability Render Config",
+
   "durabilityrender.midnightconfig.slotSettings": "Slot Durability Rendering",
-  "durabilityrender.midnightconfig.tooltipSettings": "Tooltip Durability Rendering",
-
-
-  "durabilityrender.midnightconfig.showDurabilityTooltip": "Show durability tooltip text",
-  "durabilityrender.midnightconfig.tooltipFormat": "Format of the durability tooltip text",
-  "durabilityrender.midnightconfig.percentPrecision": "How many digits should be shown in percent tooltips?",
 
   "durabilityrender.midnightconfig.slotDurabilityColorStartRRGGBB": "Slot durability color start",
   "durabilityrender.midnightconfig.slotDurabilityColorStartRRGGBB.tooltip": "This option also controls the tooltip durability color start",
@@ -28,6 +23,18 @@
   "durabilityrender.midnightconfig.enum.DurabilityColorEnum.RGB": "RGB",
   "durabilityrender.midnightconfig.enum.DurabilityColorEnum.RGB_INVERTED": "Inverted RGB",
 
+  "durabilityrender.midnightconfig.hideSlotDurabilityAbovePercent": "Hide slot durability display above __ percent",
+  "durabilityrender.midnightconfig.slotDurabilityBarWidth": "Slot durability bar width",
+  "durabilityrender.midnightconfig.slotDurabilityBarHeight": "Slot durability bar height",
+  "durabilityrender.midnightconfig.slotDurabilityBarBackgroundHeight": "Slot durability bar background height",
+  "durabilityrender.midnightconfig.slotDurabilityBarXOffset": "Slot durability bar X offset",
+  "durabilityrender.midnightconfig.slotDurabilityBarYOffset": "Slot durability bar Y offset",
+
+  "durabilityrender.midnightconfig.tooltipDurabilitySettings": "Tooltip Durability Rendering",
+
+  "durabilityrender.midnightconfig.showDurabilityTooltip": "Show durability tooltip text",
+  "durabilityrender.midnightconfig.tooltipFormat": "Format of the durability tooltip text",
+
   "durabilityrender.midnightconfig.enum.TooltipFormatEnum.DURABILITY_AND_PERCENT": "Durability and Percent",
   "durabilityrender.midnightconfig.enum.TooltipFormatEnum.PERCENT_AND_DURABILITY": "Percent and Durability",
   "durabilityrender.midnightconfig.enum.TooltipFormatEnum.REMAINING_AND_PERCENT": "Remaining Uses and Percent",
@@ -36,15 +43,20 @@
   "durabilityrender.midnightconfig.enum.TooltipFormatEnum.DURABILITY_ONLY": "Durability Only",
   "durabilityrender.midnightconfig.enum.TooltipFormatEnum.REMAINING_ONLY": "Remaining Uses Only",
 
-  "durabilityrender.midnightconfig.slotDurabilityBarWidth": "Slot durability bar width",
-  "durabilityrender.midnightconfig.slotDurabilityBarHeight": "Slot durability bar height",
-  "durabilityrender.midnightconfig.slotDurabilityBarBackgroundHeight": "Slot durability bar background height",
-  "durabilityrender.midnightconfig.slotDurabilityBarXOffset": "Slot durability bar X offset",
-  "durabilityrender.midnightconfig.slotDurabilityBarYOffset": "Slot durability bar Y offset",
-  "durabilityrender.midnightconfig.modifyTooltipLength": "Append pixel length to durability tooltip backgrounds",
-  "durabilityrender.midnightconfig.hideSlotDurabilityAbovePercent": "Hide slot durability display above __ percent",
+  "durabilityrender.midnightconfig.percentPrecision": "How many digits should be shown in percent tooltips?",
+  "durabilityrender.midnightconfig.modifyTooltipLength": "Append pixel length to durability tooltip background",
+  "durabilityrender.midnightconfig.snapToTopOrBottom": "Snap durability bar position",
+
+  "durabilityrender.midnightconfig.enum.TooltipSnapEnum.TOP": "Tooltip Top",
+  "durabilityrender.midnightconfig.enum.TooltipSnapEnum.BOTTOM": "Tooltip Bottom",
+
   "durabilityrender.midnightconfig.tooltipLeftOffset": "Tooltip durability bar left pixel offset",
   "durabilityrender.midnightconfig.tooltipRightOffset": "Tooltip durability bar right pixel offset",
-  "durabilityrender.midnightconfig.tooltipBottomOffset": "Tooltip durability bar bottom offset",
-  "durabilityrender.midnightconfig.tooltipBarThickness": "Tooltip durability bar thickness"
+  "durabilityrender.midnightconfig.tooltipYOffset": "Tooltip durability bar Y offset",
+  "durabilityrender.midnightconfig.tooltipYOffset.tooltip": "offset is calculated in relation to the config's snap position",
+  "durabilityrender.midnightconfig.tooltipBarThickness": "Tooltip durability bar thickness",
+
+  "durabilityrender.midnightconfig.tooltipSettings": "All Tooltip Rendering",
+  "durabilityrender.midnightconfig.changeEmptyTextHeight": "Change empty text height",
+  "durabilityrender.midnightconfig.changeEmptyTextHeight.tooltip": "Vanilla's default text height is 10"
 }

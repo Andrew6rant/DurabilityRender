@@ -97,6 +97,7 @@ public class Util {
                 | (((((startColor & mask2) * roundedDifference) + ((endColor & mask2) * roundedLerp)) >> 8) & mask2);
     }
     public static int parseConfigHex(String configColor) {
+        if (configColor.isEmpty() || configColor.substring(1).isEmpty()) return 0;
         return (int) Long.parseUnsignedLong(configColor.substring(1), 16);
     }
 }

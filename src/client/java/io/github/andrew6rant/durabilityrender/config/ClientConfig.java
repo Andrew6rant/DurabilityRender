@@ -15,13 +15,20 @@ public class ClientConfig extends MidnightConfig {
     @Entry(min=-1000, max=1000) public static int slotDurabilityBarXOffset = 0;
     @Entry(min=-1000, max=1000) public static int slotDurabilityBarYOffset = 0;
 
-    @Comment(centered = true) public static String tooltipSettings;
+    @Comment(centered = true) public static String tooltipDurabilitySettings;
     @Entry public static boolean showDurabilityTooltip = true;
     @Entry public static TooltipFormatEnum tooltipFormat = TooltipFormatEnum.PERCENT_AND_REMAINING;
     @Entry(min=0, max=10) public static int percentPrecision = 1;
     @Entry(min=-1000, max=1000) public static int modifyTooltipLength = 3;
+
+    @Entry public static TooltipSnapEnum snapToTopOrBottom = TooltipSnapEnum.BOTTOM;
+
     @Entry(min=-1000, max=1000) public static int tooltipLeftOffset = 3;
     @Entry(min=-1000, max=1000) public static int tooltipRightOffset = 3;
-    @Entry(min=-1000, max=1000) public static int tooltipBottomOffset = 3;
+    @Entry(min=-1000, max=1000) public static int tooltipYOffset = 3;
     @Entry(min=-1000, max=1000) public static int tooltipBarThickness = 1;
+    @Comment(centered = true) public static String tooltipSettings;
+
+    @Entry(min=-1000, max=1000) public static int changeEmptyTextHeight = 1;
+
 }

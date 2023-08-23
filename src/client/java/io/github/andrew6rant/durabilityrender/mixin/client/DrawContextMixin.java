@@ -44,6 +44,11 @@ public abstract class DrawContextMixin {
         }
     }
 
+    @Inject(method = "drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;IILnet/minecraft/client/gui/tooltip/TooltipPositioner;)V", at = @At(value = "TAIL"))
+    private void durabilityrender$cullFocusedStack(TextRenderer textRenderer, List<TooltipComponent> components, int x, int y, TooltipPositioner positioner, CallbackInfo ci) {
+        savedFocusedStack = null; // hovering over an item and then immediately pausing and viewing a settings tooltip would otherwise render the durability tooltip
+    }
+
     @Inject(method = "drawItemInSlot(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V", at = @At(value = "HEAD"))
     private void durabilityrender$saveSlotStatck(TextRenderer textRenderer, ItemStack stack, int x, int y, String countOverride, CallbackInfo ci) {
         savedSlotStack = stack;

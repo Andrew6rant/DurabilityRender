@@ -1,5 +1,6 @@
 package io.github.andrew6rant.durabilityrender;
 
+import io.github.andrew6rant.durabilityrender.config.ConfigEnums;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.item.ItemStack;
 
@@ -19,8 +20,11 @@ public class DrawUtil {
 
                 int step = Math.round((float)(k- tooltipLeftOffset - tooltipRightOffset) - (float)stackDamage * (float)(k- tooltipLeftOffset - tooltipRightOffset) / (float)maxDamage);
 
-                drawContext.fill(i+ tooltipLeftOffset, j+l- tooltipBottomOffset, i+k- tooltipRightOffset, j+l-(tooltipBottomOffset + tooltipBarThickness), 401, -11184811);
-                drawContext.fill(i+ tooltipLeftOffset, j+l- tooltipBottomOffset, i+step, j+l-(tooltipBottomOffset + tooltipBarThickness), 401, Util.getDurabilityColor(savedStack) | 0xFF000000);
+                if (snapToTopOrBottom == ConfigEnums.TooltipSnapEnum.TOP) {
+                    l = 1;
+                }
+                drawContext.fill(i+tooltipLeftOffset, j+l-tooltipYOffset, i+k-tooltipRightOffset, j+l-(tooltipYOffset+tooltipBarThickness), 401, -11184811);
+                drawContext.fill(i+tooltipLeftOffset, j+l-tooltipYOffset, i+step, j+l-(tooltipYOffset+tooltipBarThickness), 401, Util.getDurabilityColor(savedStack) | 0xFF000000);
             }
         }
     }

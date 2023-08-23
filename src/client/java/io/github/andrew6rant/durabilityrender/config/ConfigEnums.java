@@ -8,4 +8,7 @@ public class ConfigEnums {
     public enum DurabilityColorEnum {
         HSL_CLOCKWISE, HSL_COUNTERCLOCKWISE, RGB, RGB_INVERTED
     }
+    public enum TooltipSnapEnum {
+        TOP, BOTTOM
+    }
 }
