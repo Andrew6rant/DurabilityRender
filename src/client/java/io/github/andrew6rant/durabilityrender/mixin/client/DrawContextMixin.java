@@ -12,6 +12,8 @@ import net.minecraft.client.gui.tooltip.TooltipPositioner;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
 import org.joml.Vector2ic;
 import org.spongepowered.asm.mixin.Final;
@@ -24,8 +26,10 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.List;
 
+import static io.github.andrew6rant.durabilityrender.Util.mixHexColors;
 import static io.github.andrew6rant.durabilityrender.Util.parseConfigHex;
 import static io.github.andrew6rant.durabilityrender.config.ClientConfig.*;
+import static io.github.andrew6rant.durabilityrender.config.ConfigEnums.DurabilityColorEnum.HSL_CLOCKWISE;
 import static net.minecraft.util.math.ColorHelper.Abgr.*;
 
 @Mixin(DrawContext.class)
@@ -88,12 +92,33 @@ public abstract class DrawContextMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getItemBarColor()I", ordinal = 0))
     public int durabilityrender$redirectSlotGetItemBarColor(ItemStack itemStack) {
         float percentDamaged = Math.max(0.0F, (((float)itemStack.getMaxDamage() - (float)itemStack.getDamage()) / (float)itemStack.getMaxDamage()));
-        //System.out.println("ok");
         int startColor = parseConfigHex(slotDurabilityColorStartAARRGGBB);
         int endColor = parseConfigHex(slotDurabilityColorEndAARRGGBB);
+
+        int startHue = 0, endHue = 0;
+        float hueValue;
+
+        return switch (durabilityColor) {
+            case RGB -> mixHexColors(endColor, startColor, percentDamaged);
+            case RGB_INVERTED -> mixHexColors(startColor, endColor, percentDamaged);
+            case HSL_CLOCKWISE, HSL_COUNTERCLOCKWISE -> {
+                startHue = Util.getHue(getRed(startColor), getGreen(startColor), getBlue(startColor));
+                endHue = Util.getHue(getRed(endColor), getGreen(endColor), getBlue(endColor));
+                if (durabilityColor == HSL_CLOCKWISE) {
+                    hueValue = ((endHue/360f)*percentDamaged)-((startHue/360f)*percentDamaged);
+                } else {
+                    hueValue = ((startHue/360f)*percentDamaged)+((endHue/360f)*percentDamaged);
+                }
+                if (hueValue < 0) {
+                    hueValue = 1f - hueValue;
+                }
+                yield MathHelper.hsvToRgb(hueValue, 1.0F, 1.0F);
+            }
+        };
+
         //int hex = mixHexColors(endColor, startColor, percentDamaged * 256F);
-        int startHue = Util.getHue(getRed(startColor), getGreen(startColor), getBlue(startColor));
-        int endHue = Util.getHue(getRed(endColor), getGreen(endColor), getBlue(endColor));
+    //    int startHue = Util.getHue(getRed(startColor), getGreen(startColor), getBlue(startColor));
+    //    int endHue = Util.getHue(getRed(endColor), getGreen(endColor), getBlue(endColor));
 
         //return mixHexColors(endColor, startColor, percentDamaged);
         //int alpha = getAbgr(0x10000000, getBlue(hex), getGreen(hex), getRed(hex));
@@ -103,7 +128,7 @@ public abstract class DrawContextMixin {
         //return itemStack.getItemBarColor() | -16777216;
 
 
-        float hueValue = ((startHue/360f)*percentDamaged)-((endHue/360f)*percentDamaged);
+    //    float hueValue = ((startHue/360f)*percentDamaged)-((endHue/360f)*percentDamaged);
         //if (hueValue < 0) {
         //    hueValue = 1f + hueValue;
         //}
@@ -112,13 +137,14 @@ public abstract class DrawContextMixin {
         //} else {
         //return MathHelper.hsvToRgb(hueValue, 1.0F, 1.0F);
         //}
-        if (hueValue < 0) {
-                return MathHelper.hsvToRgb(((endHue/360f)*percentDamaged)-((startHue/360f)*percentDamaged), 1.0F, 1.0F);
-            } else {
+        //System.out.println("hueValue: " + hueValue+", "+itemStack);
+        /*if (hueValue < 0) {
+            return MathHelper.hsvToRgb(((endHue/360f)*percentDamaged)+((startHue/360f)*percentDamaged), 1.0F, 1.0F);
+            //return MathHelper.hsvToRgb(((endHue/360f)*percentDamaged)-((startHue/360f)*percentDamaged), 1.0F, 1.0F);
+        } else {
             //return MathHelper.hsvToRgb(((endHue/360f)*percentDamaged)+((startHue/360f)*percentDamaged), 1.0F, 1.0F);
             return MathHelper.hsvToRgb(hueValue, 1.0F, 1.0F);
-        }
-
+        }*/
     }
 
     @ModifyConstant(method = "drawItemInSlot(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",

@@ -7,9 +7,19 @@
   "durabilityrender.tooltip.percent_and_remaining": "%s%% (%s Uses Remain)",
   "durabilityrender.tooltip.remaining_and_percent": "Remaining uses: %s (%s%%)",
 
+
+  "durabilityrender.midnightconfig.title": "Durability Render Config",
   "durabilityrender.midnightconfig.showDurabilityTooltip": "Show durability tooltip text",
   "durabilityrender.midnightconfig.tooltipFormat": "Format of the durability tooltip",
   "durabilityrender.midnightconfig.percentPrecision": "How many digits should be shown in percent tooltips?",
+
+  "durabilityrender.midnightconfig.slotDurabilityColorStartAARRGGBB": "Slot durability color start",
+  "durabilityrender.midnightconfig.slotDurabilityColorEndAARRGGBB": "Slot durability color end",
+
+  "durabilityrender.midnightconfig.enum.DurabilityColorEnum.HSL_CLOCKWISE": "HSL Clockwise",
+  "durabilityrender.midnightconfig.enum.DurabilityColorEnum.HSL_COUNTERCLOCKWISE": "HSL Counterclockwise",
+  "durabilityrender.midnightconfig.enum.DurabilityColorEnum.RGB": "RGB",
+  "durabilityrender.midnightconfig.enum.DurabilityColorEnum.RGB_INVERTED": "RGB Inverted",
 
   "durabilityrender.midnightconfig.enum.TooltipFormatEnum.DURABILITY_AND_PERCENT": "Durability and Percent",
   "durabilityrender.midnightconfig.enum.TooltipFormatEnum.PERCENT_AND_DURABILITY": "Percent and Durability",
@@ -25,7 +35,7 @@
   "durabilityrender.midnightconfig.slotDurabilityBarXOffset": "Slot durability bar X offset",
   "durabilityrender.midnightconfig.slotDurabilityBarYOffset": "Slot durability bar Y offset",
   "durabilityrender.midnightconfig.modifyTooltipLength": "Append pixel length to tooltips",
-  "durabilityrender.midnightconfig.hideSlotDurabilityAbovePercent": "Hide slot durability display above _ percent",
+  "durabilityrender.midnightconfig.hideSlotDurabilityAbovePercent": "Hide slot durability display above __ percent",
   "durabilityrender.midnightconfig.tooltipLeftOffset": "Tooltip durability bar left offset",
   "durabilityrender.midnightconfig.tooltipRightOffset": "Tooltip durability bar right offset",
   "durabilityrender.midnightconfig.tooltipBottomOffset": "Tooltip durability bar bottom offset",
