@@ -5,7 +5,7 @@
   "durabilityrender.tooltip.durability_and_percent": "%s / %s (%s%%)",
   "durabilityrender.tooltip.percent_and_durability": "%s%% (%s / %s)",
   "durabilityrender.tooltip.percent_and_remaining": "%s%% (%s Uses Remain)",
-  "durabilityrender.tooltip.remaining_and_percent": "Remaining uses: %s (%s%%)",
+  "durabilityrender.tooltip.remaining_and_percent": "Remaining Uses: %s (%s%%)",
 
   "durabilityrender.midnightconfig.title": "Durability Render Config",
 

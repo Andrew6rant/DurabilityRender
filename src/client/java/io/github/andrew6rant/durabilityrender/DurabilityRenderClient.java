@@ -20,14 +20,15 @@ public class DurabilityRenderClient implements ClientModInitializer {
 					int maxDamage = itemStack.getMaxDamage();
 					int remainingDurability = maxDamage - itemStack.getDamage();
 					double percentDurability = ((double)remainingDurability/(double)maxDamage) * 100.0D;
+					Number roundedPercent = Util.round(percentDurability, percentPrecision);
 					switch (tooltipFormat) {
-						case PERCENT_ONLY -> textList.add(Text.translatable("durabilityrender.tooltip.percent_only", Util.round(percentDurability, percentPrecision)).formatted(Formatting.DARK_GRAY));
+						case PERCENT_ONLY -> textList.add(Text.translatable("durabilityrender.tooltip.percent_only", roundedPercent).formatted(Formatting.DARK_GRAY));
 						case DURABILITY_ONLY -> textList.add(Text.translatable("durabilityrender.tooltip.durability_only", remainingDurability, maxDamage).formatted(Formatting.DARK_GRAY));
 						case REMAINING_ONLY -> textList.add(Text.translatable("durabilityrender.tooltip.remaining_only", remainingDurability).formatted(Formatting.DARK_GRAY));
-						case DURABILITY_AND_PERCENT -> textList.add(Text.translatable("durabilityrender.tooltip.durability_and_percent", remainingDurability, maxDamage, Util.round(percentDurability, percentPrecision)).formatted(Formatting.DARK_GRAY));
-						case PERCENT_AND_DURABILITY -> textList.add(Text.translatable("durabilityrender.tooltip.percent_and_durability", Util.round(percentDurability, percentPrecision), remainingDurability, maxDamage).formatted(Formatting.DARK_GRAY));
-						case PERCENT_AND_REMAINING -> textList.add(Text.translatable("durabilityrender.tooltip.percent_and_remaining", Util.round(percentDurability, percentPrecision), remainingDurability).formatted(Formatting.DARK_GRAY));
-						case REMAINING_AND_PERCENT -> textList.add(Text.translatable("durabilityrender.tooltip.remaining_and_percent", remainingDurability, Util.round(percentDurability, percentPrecision)).formatted(Formatting.DARK_GRAY));
+						case DURABILITY_AND_PERCENT -> textList.add(Text.translatable("durabilityrender.tooltip.durability_and_percent", remainingDurability, maxDamage, roundedPercent).formatted(Formatting.DARK_GRAY));
+						case PERCENT_AND_DURABILITY -> textList.add(Text.translatable("durabilityrender.tooltip.percent_and_durability", roundedPercent, remainingDurability, maxDamage).formatted(Formatting.DARK_GRAY));
+						case PERCENT_AND_REMAINING -> textList.add(Text.translatable("durabilityrender.tooltip.percent_and_remaining", roundedPercent, remainingDurability).formatted(Formatting.DARK_GRAY));
+						case REMAINING_AND_PERCENT -> textList.add(Text.translatable("durabilityrender.tooltip.remaining_and_percent", remainingDurability, roundedPercent).formatted(Formatting.DARK_GRAY));
 					}
 				}
 			}

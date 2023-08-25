@@ -1,6 +1,7 @@
 package io.github.andrew6rant.durabilityrender;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 
 import java.math.BigDecimal;
@@ -48,9 +49,12 @@ public class Util {
         return (int) Long.parseUnsignedLong(Integer.toHexString((int)(configOpacity * 2.549f))+"000000", 16);
     }
 
-    public static double round(double value, int places) {
+    public static Number round(double value, int places) {
         BigDecimal bd = new BigDecimal(Double.toString(value));
         bd = bd.setScale(places, RoundingMode.HALF_DOWN);
+        if (places == 0) {
+            return bd.intValue();
+        }
         return bd.doubleValue();
     }
 
