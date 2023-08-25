@@ -23,6 +23,9 @@
   "durabilityrender.midnightconfig.enum.DurabilityColorEnum.RGB": "RGB",
   "durabilityrender.midnightconfig.enum.DurabilityColorEnum.RGB_INVERTED": "Inverted RGB",
 
+  "durabilityrender.midnightconfig.slotDurabilityBackgroundColorRRGGBB": "Slot durability background color",
+  "durabilityrender.midnightconfig.slotDurabilityOpacity": "Slot durability opacity",
+  "durabilityrender.midnightconfig.slotDurabilityBackgroundOpacity": "Slot durability background opacity",
   "durabilityrender.midnightconfig.hideSlotDurabilityAbovePercent": "Hide slot durability display above __ percent",
   "durabilityrender.midnightconfig.slotDurabilityBarWidth": "Slot durability bar width",
   "durabilityrender.midnightconfig.slotDurabilityBarHeight": "Slot durability bar height",
