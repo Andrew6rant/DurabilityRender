@@ -76,31 +76,13 @@ public abstract class DrawContextMixin {
     @Redirect(method = "drawItemInSlot(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
     at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;fill(Lnet/minecraft/client/render/RenderLayer;IIIII)V", ordinal = 0))
     public void durabilityrender$redirectSlotDurabilityBackground(DrawContext instance, RenderLayer layer, int x1, int y1, int x2, int y2, int color) {
-        ((DrawContext)(Object)this).fill(RenderLayer.getGuiOverlay(), slotDurabilityBarXOffset+x1+(13-slotDurabilityBarWidth), (-slotDurabilityBarYOffset)+y1, slotDurabilityBarXOffset+x2, (-slotDurabilityBarYOffset)+y2-2+slotDurabilityBarBackgroundHeight, color);
+        ((DrawContext)(Object)this).fill(RenderLayer.getGuiOverlay(), slotDurabilityBarXOffset+x1+(13-slotDurabilityBarWidth), (-slotDurabilityBarYOffset)+y1, slotDurabilityBarXOffset+x2, (-slotDurabilityBarYOffset)+y2-2+slotDurabilityBarBackgroundHeight, Util.parseConfigHex(slotDurabilityBackgroundColorRRGGBB) | Util.getOpacity(slotDurabilityBackgroundOpacity));
     }
 
     @Redirect(method = "drawItemInSlot(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;fill(Lnet/minecraft/client/render/RenderLayer;IIIII)V", ordinal = 1))
     public void durabilityrender$redirectSlotDurabilityForeground(DrawContext instance, RenderLayer layer, int x1, int y1, int x2, int y2, int color) {
         int i = Util.getItemBarStep(savedSlotStack);
-        ((DrawContext)(Object)this).fill(RenderLayer.getGuiOverlay(), slotDurabilityBarXOffset+x1+(13-slotDurabilityBarWidth), (-slotDurabilityBarYOffset)+y1, slotDurabilityBarXOffset+x1+i+(13-slotDurabilityBarWidth), (-slotDurabilityBarYOffset)+y2-1+slotDurabilityBarHeight, color);
-    }
-
-    @Redirect(method = "drawItemInSlot(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getItemBarColor()I", ordinal = 0))
-    public int durabilityrender$redirectSlotGetItemBarColor(ItemStack itemStack) {
-        return getDurabilityColor(itemStack);
-    }
-
-    @ModifyConstant(method = "drawItemInSlot(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
-            constant = @Constant(intValue = -16777216, ordinal = 0))
-    public int durabilityrender$modifySlotBackgroundOpacity(int constant) {
-        return Util.getDurabilityBackgroundOpacity();
-    }
-
-    @ModifyConstant(method = "drawItemInSlot(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V",
-            constant = @Constant(intValue = -16777216, ordinal = 1))
-    public int durabilityrender$modifySlotForegroundOpacity(int constant) {
-        return Util.getDurabilityOpacity();
+        ((DrawContext)(Object)this).fill(RenderLayer.getGuiOverlay(), slotDurabilityBarXOffset+x1+(13-slotDurabilityBarWidth), (-slotDurabilityBarYOffset)+y1, slotDurabilityBarXOffset+x1+i+(13-slotDurabilityBarWidth), (-slotDurabilityBarYOffset)+y2-1+slotDurabilityBarHeight, getDurabilityColor(savedSlotStack) | Util.getOpacity(slotDurabilityOpacity));
     }
 }

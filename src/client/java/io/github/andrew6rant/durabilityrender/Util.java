@@ -19,7 +19,7 @@ public class Util {
         int startColor = parseConfigHex(slotDurabilityColorStartRRGGBB);
         int endColor = parseConfigHex(slotDurabilityColorEndRRGGBB);
 
-        int startHue = 0, endHue = 0;
+        int startHue, endHue;
         float hueValue;
 
         return switch (durabilityColor) {
@@ -44,12 +44,8 @@ public class Util {
         return Math.round((float)slotDurabilityBarWidth - (float)stack.getDamage() * (float)slotDurabilityBarWidth / (float)stack.getMaxDamage());
     }
 
-    public static int getDurabilityOpacity() {
-        return -16777216; //-16777216 // 1157627904
-    }
-
-    public static int getDurabilityBackgroundOpacity() {
-        return 0x77000000;
+    public static int getOpacity(int configOpacity) {
+        return (int) Long.parseUnsignedLong(Integer.toHexString((int)(configOpacity * 2.549f))+"000000", 16);
     }
 
     public static double round(double value, int places) {

@@ -7,6 +7,12 @@ public class ClientConfig extends MidnightConfig {
     @Entry(width = 7, isColor = true) public static String slotDurabilityColorStartRRGGBB = "#00FF00";
     @Entry(width = 7, isColor = true) public static String slotDurabilityColorEndRRGGBB = "#FF0000";
     @Entry public static DurabilityColorEnum durabilityColor = DurabilityColorEnum.HSL_CLOCKWISE;
+    @Entry(width = 7, isColor = true) public static String slotDurabilityBackgroundColorRRGGBB = "#000000";
+
+    @Entry(min=0, max=100, isSlider = true) public static int slotDurabilityOpacity = 100;
+
+    @Entry(min=0, max=100, isSlider = true) public static int slotDurabilityBackgroundOpacity = 45;
+
     @Entry(min=0, max=100, isSlider = true) public static int hideSlotDurabilityAbovePercent = 100;
 
     @Entry(min=0, max=1000) public static int slotDurabilityBarWidth = 8;
