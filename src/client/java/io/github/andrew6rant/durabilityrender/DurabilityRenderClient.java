@@ -1,6 +1,7 @@
 package io.github.andrew6rant.durabilityrender;
 
 import io.github.andrew6rant.durabilityrender.config.ClientConfig;
+import io.github.andrew6rant.durabilityrender.config.ConfigEnums;
 import io.github.andrew6rant.durabilityrender.config.MidnightConfig;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
@@ -15,7 +16,7 @@ public class DurabilityRenderClient implements ClientModInitializer {
 		MidnightConfig.init("durabilityrender", ClientConfig.class);
 
 		ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, textList) -> {
-			if (showDurabilityTooltip) {
+			if (tooltipFormat != ConfigEnums.TooltipFormatEnum.NONE) {
 				if (!tooltipContext.isAdvanced() && itemStack.isDamageable()) {
 					int maxDamage = itemStack.getMaxDamage();
 					int remainingDurability = maxDamage - itemStack.getDamage();

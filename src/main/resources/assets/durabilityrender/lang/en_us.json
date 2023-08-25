@@ -7,16 +7,28 @@
   "durabilityrender.tooltip.percent_and_remaining": "%s%% (%s Uses Remain)",
   "durabilityrender.tooltip.remaining_and_percent": "Remaining Uses: %s (%s%%)",
 
+  "durabilityrender.tooltip.name_and_percent_only": "%s (%s%%)",
+  "durabilityrender.tooltip.name_and_durability_only": "%s (%s/%s)",
+  "durabilityrender.tooltip.name_and_remaining_only": "%s (%s Uses)",
+  "durabilityrender.tooltip.name_and_durability_and_percent": "%s (%s/%s, %s%%)",
+  "durabilityrender.tooltip.name_and_percent_and_durability": "%s (%s%%, %s/%s)",
+  "durabilityrender.tooltip.name_and_percent_and_remaining": "%s (%s%%, %s Uses)",
+  "durabilityrender.tooltip.name_and_remaining_and_percent": "%s (%s Uses, %s%%)",
+
   "durabilityrender.midnightconfig.title": "Durability Render Config",
 
-  "durabilityrender.midnightconfig.slotSettings": "Slot Durability Rendering",
+  "durabilityrender.midnightconfig.globalSettings": "All Durability Rendering",
 
-  "durabilityrender.midnightconfig.slotDurabilityColorStartRRGGBB": "Slot durability color start",
-  "durabilityrender.midnightconfig.slotDurabilityColorStartRRGGBB.tooltip": "This option also controls the tooltip durability color start",
-  "durabilityrender.midnightconfig.slotDurabilityColorEndRRGGBB": "Slot durability color end",
-  "durabilityrender.midnightconfig.slotDurabilityColorEndRRGGBB.tooltip": "This option also controls the tooltip durability color end",
+  "durabilityrender.midnightconfig.slotDurabilityColorStartRRGGBB": "Durability color start",
+  "durabilityrender.midnightconfig.slotDurabilityColorEndRRGGBB": "Durability color end",
   "durabilityrender.midnightconfig.durabilityColor": "Color blending algorithm",
   "durabilityrender.midnightconfig.durabilityColor.tooltip": "Vanilla Minecraft uses Clockwise HSL. RGB is better performing but the colors may look less vibrant.\nThis option also controls the tooltip durability color algorithm",
+  "durabilityrender.midnightconfig.durabilityFillDirection": "Durability fill direction",
+
+  "durabilityrender.midnightconfig.enum.DurabilityFillEnum.LEFT_TO_RIGHT": "Left to Right",
+  "durabilityrender.midnightconfig.enum.DurabilityFillEnum.RIGHT_TO_LEFT": "Right to Left",
+
+  "durabilityrender.midnightconfig.slotSettings": "Slot Durability Rendering",
 
   "durabilityrender.midnightconfig.enum.DurabilityColorEnum.HSL_CLOCKWISE": "Clockwise HSL",
   "durabilityrender.midnightconfig.enum.DurabilityColorEnum.HSL_COUNTERCLOCKWISE": "Counterclockwise HSL",
@@ -35,8 +47,8 @@
 
   "durabilityrender.midnightconfig.tooltipDurabilitySettings": "Tooltip Durability Rendering",
 
-  "durabilityrender.midnightconfig.showDurabilityTooltip": "Show durability tooltip text",
   "durabilityrender.midnightconfig.tooltipFormat": "Format of the durability tooltip text",
+  "durabilityrender.midnightconfig.tooltipNameFormat": "Format of the durability item name text",
 
   "durabilityrender.midnightconfig.enum.TooltipFormatEnum.DURABILITY_AND_PERCENT": "Durability and Percent",
   "durabilityrender.midnightconfig.enum.TooltipFormatEnum.PERCENT_AND_DURABILITY": "Percent and Durability",
@@ -45,6 +57,16 @@
   "durabilityrender.midnightconfig.enum.TooltipFormatEnum.PERCENT_ONLY": "Percent Only",
   "durabilityrender.midnightconfig.enum.TooltipFormatEnum.DURABILITY_ONLY": "Durability Only",
   "durabilityrender.midnightconfig.enum.TooltipFormatEnum.REMAINING_ONLY": "Remaining Uses Only",
+  "durabilityrender.midnightconfig.enum.TooltipFormatEnum.NONE": "Hidden",
+
+  "durabilityrender.midnightconfig.enum.TooltipNameFormatEnum.DURABILITY_AND_PERCENT": "Durability and Percent",
+  "durabilityrender.midnightconfig.enum.tooltipNameFormatEnum.PERCENT_AND_DURABILITY": "Percent and Durability",
+  "durabilityrender.midnightconfig.enum.tooltipNameFormatEnum.REMAINING_AND_PERCENT": "Remaining Uses and Percent",
+  "durabilityrender.midnightconfig.enum.tooltipNameFormatEnum.PERCENT_AND_REMAINING": "Percent and Remaining Uses",
+  "durabilityrender.midnightconfig.enum.tooltipNameFormatEnum.PERCENT_ONLY": "Percent Only",
+  "durabilityrender.midnightconfig.enum.tooltipNameFormatEnum.DURABILITY_ONLY": "Durability Only",
+  "durabilityrender.midnightconfig.enum.tooltipNameFormatEnum.REMAINING_ONLY": "Remaining Uses Only",
+  "durabilityrender.midnightconfig.enum.tooltipNameFormatEnum.NONE": "Hidden",
 
   "durabilityrender.midnightconfig.percentPrecision": "How many digits should be shown in percent tooltips?",
   "durabilityrender.midnightconfig.modifyTooltipLength": "Append pixel length to durability tooltip background",

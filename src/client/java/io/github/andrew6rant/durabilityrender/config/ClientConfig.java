@@ -3,10 +3,14 @@ package io.github.andrew6rant.durabilityrender.config;
 import io.github.andrew6rant.durabilityrender.config.ConfigEnums.*;
 
 public class ClientConfig extends MidnightConfig {
-    @Comment(centered = true) public static String slotSettings;
+    @Comment(centered = true) public static String globalSettings;
     @Entry(width = 7, isColor = true) public static String slotDurabilityColorStartRRGGBB = "#00FF00";
     @Entry(width = 7, isColor = true) public static String slotDurabilityColorEndRRGGBB = "#FF0000";
     @Entry public static DurabilityColorEnum durabilityColor = DurabilityColorEnum.HSL_CLOCKWISE;
+    @Entry public static DurabilityFillEnum durabilityFillDirection = DurabilityFillEnum.LEFT_TO_RIGHT;
+
+    @Comment(centered = true) public static String slotSettings;
+
     @Entry(width = 7, isColor = true) public static String slotDurabilityBackgroundColorRRGGBB = "#000000";
 
     @Entry(min=0, max=100, isSlider = true) public static int slotDurabilityOpacity = 100;
@@ -22,8 +26,8 @@ public class ClientConfig extends MidnightConfig {
     @Entry(min=-1000, max=1000) public static int slotDurabilityBarYOffset = 0;
 
     @Comment(centered = true) public static String tooltipDurabilitySettings;
-    @Entry public static boolean showDurabilityTooltip = true;
     @Entry public static TooltipFormatEnum tooltipFormat = TooltipFormatEnum.PERCENT_AND_REMAINING;
+    @Entry public static TooltipNameFormatEnum tooltipNameFormat = TooltipNameFormatEnum.NONE;
     @Entry(min=0, max=10) public static int percentPrecision = 1;
     @Entry(min=-1000, max=1000) public static int modifyTooltipLength = 3;
 

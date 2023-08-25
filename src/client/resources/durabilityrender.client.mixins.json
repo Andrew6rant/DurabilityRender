@@ -5,6 +5,7 @@
 	"client": [
 		"DrawContextMixin",
 		"HandledScreenAccessor",
+		"ItemMixin",
 		"ItemStackMixin",
 		"OrderedTextTooltipComponentMixin"
 	],
